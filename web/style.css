@@ -1,0 +1,16 @@
+*{
+    margin: 0%;
+    border: 0;
+   
+}
+#canvas{
+    background-color:black ;
+    opacity: 0.8;
+}
+div.text{
+    position: relative;
+   height: 100px;
+color: white;
+   width: 100px;
+
+}
