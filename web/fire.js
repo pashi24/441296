@@ -1,5 +1,4 @@
 // when animating on canvas, it is best to use requestAnimationFrame instead of setTimeout or setInterval
-// not supported in all browsers though and sometimes needs a prefix, so we need a shim
 window.requestAnimFrame = ( function() {
 	return window.requestAnimationFrame ||
 				window.webkitRequestAnimationFrame ||
@@ -9,7 +8,7 @@ window.requestAnimFrame = ( function() {
 				};
 })();
 
-// now we will setup our basic variables for the demo
+// now we will init our variables
 var canvas = document.getElementById( 'canvas' ),
 		ctx = canvas.getContext( '2d' ),
 		// full screen dimensions
@@ -37,9 +36,9 @@ var canvas = document.getElementById( 'canvas' ),
 canvas.width = cw;
 canvas.height = ch;
 
-// now we are going to setup our function placeholders for the entire demo
+// function placeholders for the entire canavas
 
-// get a random number within a range
+// get a random number within a range with Math.*
 function random( min, max ) {
 	return Math.random() * ( max - min ) + min;
 }
@@ -82,9 +81,9 @@ function Firework( sx, sy, tx, ty ) {
 
 // update firework
 Firework.prototype.update = function( index ) {
-	// remove last item in coordinates array
+	// pop last item in coordinates array
 	this.coordinates.pop();
-	// add current coordinates to the start of the array
+	// stack current coordinates to the start of the array
 	this.coordinates.unshift( [ this.x, this.y ] );
 	
 	// cycle the circle target indicator radius
@@ -94,7 +93,7 @@ Firework.prototype.update = function( index ) {
 		this.targetRadius = 1;
 	}
 	
-	// speed up the firework
+	// speed up the firework, hiking the clock cycles
 	this.speed *= this.acceleration;
 	
 	// get the current velocities based on angle and speed
